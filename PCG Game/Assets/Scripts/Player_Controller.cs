@@ -20,6 +20,7 @@ public class Player_Controller : MonoBehaviour
 
     private float firingTime;
     private bool isShooting = false;
+    private bool startCounting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -103,16 +104,20 @@ public class Player_Controller : MonoBehaviour
         if (shootLeft || shootRight || shootUp || shootDown)
         {
             isShooting = true;
+            startCounting = true;
         }
         else
         {
             isShooting = false;
-            firingTime = attackSpeed + 1;
+        }
+
+        if (startCounting)
+        {
+            firingTime += Time.deltaTime;
         }
 
         if (isShooting)
         {
-            firingTime += Time.deltaTime;
             if (firingTime >= attackSpeed)
             {
                 firingTime = 0;
@@ -147,5 +152,10 @@ public class Player_Controller : MonoBehaviour
     public Vector2 GetDirection()
     {
         return direction;
+    }
+
+    public Vector3 GetPlayerOrientation()
+    {
+        return pos.position;
     }
 }
