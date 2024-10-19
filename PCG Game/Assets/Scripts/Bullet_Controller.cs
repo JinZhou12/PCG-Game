@@ -8,7 +8,8 @@ public class Bullet_Controller : MonoBehaviour
 
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float lifeTime;
-
+    [SerializeField] private float bulletDamage;
+    [SerializeField] private bool canPhase = false;
     private float timeAlive = 0;
 
     private Vector2 direction;
@@ -57,7 +58,21 @@ public class Bullet_Controller : MonoBehaviour
 
     public void HandleMovement()
     {
-        Debug.Log(direction);
         rb.velocity = direction * bulletSpeed;
+    }
+
+    public float GetDamage()
+    {
+        return bulletDamage;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!(collision.gameObject.tag == "Player"))
+        {
+            if (!canPhase)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

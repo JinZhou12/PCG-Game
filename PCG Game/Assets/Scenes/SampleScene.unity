@@ -134,6 +134,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abraham
       objectReference: {fileID: 0}
+    - target: {fileID: 890753397501727643, guid: 5f83943ae70b72b408a81f19786dc427, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661035556393923985, guid: 5f83943ae70b72b408a81f19786dc427, type: 3}
+      propertyPath: health
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661035556393923985, guid: 5f83943ae70b72b408a81f19786dc427, type: 3}
+      propertyPath: attackSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6503458824678792253, guid: 5f83943ae70b72b408a81f19786dc427, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5477421
@@ -281,11 +293,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 818119892628598615, guid: 2803f917997ac084790feff02336b3b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3021143
+      value: 17.91
       objectReference: {fileID: 0}
     - target: {fileID: 818119892628598615, guid: 2803f917997ac084790feff02336b3b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2900645
+      value: 2.06
       objectReference: {fileID: 0}
     - target: {fileID: 818119892628598615, guid: 2803f917997ac084790feff02336b3b5, type: 3}
       propertyPath: m_LocalPosition.z
