@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5211887630483490421}
   - component: {fileID: 5661035556393923985}
   - component: {fileID: -4053372474138618850}
-  - component: {fileID: -7613389909128126180}
+  - component: {fileID: 8937238281681407207}
   m_Layer: 2
   m_Name: Abraham
   m_TagString: Player
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1725898018, guid: 7242a6d3dd523d94aa6710388f0cfba7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   attackSpeed: 2
   health: 3
   invulTime: 0
-  maxDistance: 0.75
+  maxDistance: 0.5
 --- !u!50 &-4053372474138618850
 Rigidbody2D:
   serializedVersion: 4
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &-7613389909128126180
+--- !u!61 &8937238281681407207
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.073749065, y: 0.48821032}
+  m_Offset: {x: 0.04127404, y: 0.4622542}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -177,7 +177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7956147, y: 0.92980456}
+  m_Size: {x: 0.87028164, y: 0.8537528}
   m_EdgeRadius: 0
 --- !u!1 &2719470902095558900
 GameObject:
