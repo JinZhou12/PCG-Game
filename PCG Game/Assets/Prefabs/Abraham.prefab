@@ -106,7 +106,7 @@ MonoBehaviour:
   attackSpeed: 2
   health: 3
   invulTime: 0
-  maxDistance: 0
+  maxDistance: 0.75
 --- !u!50 &-4053372474138618850
 Rigidbody2D:
   serializedVersion: 4

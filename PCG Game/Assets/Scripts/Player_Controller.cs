@@ -15,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private Bullet_Controller bulletController;
     private GameObject bulletSpawner;
+    private Transform playerCenter;
 
     [Header("Player Stats")]
     [SerializeField] private float moveSpeed; //how fast player moves
@@ -40,10 +41,10 @@ public class Player_Controller : MonoBehaviour
 
     [Header("Obstacle Detection")]
     [SerializeField] private float maxDistance;
-    private bool canMoveLeft = true;
-    private bool canMoveRight = true;
-    private bool canMoveUp = true;
-    private bool canMoveDown = true;
+    private RaycastHit2D canMoveLeft;
+    private RaycastHit2D canMoveRight;
+    private RaycastHit2D canMoveUp;
+    private RaycastHit2D canMoveDown;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +53,9 @@ public class Player_Controller : MonoBehaviour
         facingToRight = pos.localScale;
         facingToLeft = new Vector3(facingToRight.x * -1, facingToRight.y, facingToRight.z);
 
-        Transform bulletSpawner = this.gameObject.transform.GetChild(1);
-        pos = bulletSpawner; //Get location of bullet spawner to use when shooting bullets
+        bulletSpawner = this.gameObject.transform.GetChild(1).gameObject;
+
+        playerCenter = gameObject.transform.GetChild(0);
 
         invulTime = maxInvulTime;
 
@@ -110,11 +112,11 @@ public class Player_Controller : MonoBehaviour
     private void DetectObstacle()
     {
         //Check all directions to make sure movement is possible
-        canMoveLeft = Physics2D.Raycast(transform.position, Vector2.left, maxDistance, 0);
-        Debug.Log(canMoveLeft);
-        RaycastHit2D checkRight = Physics2D.Raycast(transform.position, Vector2.right, maxDistance, 0);
-        RaycastHit2D checkUp = Physics2D.Raycast(transform.position, Vector2.up, maxDistance, 0);
-        RaycastHit2D checkDown = Physics2D.Raycast(transform.position, Vector2.down, maxDistance, 0);
+        canMoveLeft = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.left), maxDistance);
+        //Debug.DrawRay(playerCenter.position, transform.TransformDirection(Vector2.left) * maxDistance, Color.red);
+        canMoveRight = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.right), maxDistance);
+        canMoveUp = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.up), maxDistance);
+        canMoveDown = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.down), maxDistance);
     }
 
     private void HandleImmune()
@@ -159,24 +161,24 @@ public class Player_Controller : MonoBehaviour
 
         if (isMoving)
         {
-            if (moveLeft && canMoveLeft)
+            if (moveLeft && !canMoveLeft)
             {
                 pos.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 direction = Vector2.left;
                 facingRight = false;
             }
-            if (moveRight && canMoveRight)
+            if (moveRight && !canMoveRight)
             {
                 pos.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 direction = Vector2.right;
                 facingRight = true;
             }
-            if (moveUp && canMoveUp)
+            if (moveUp && !canMoveUp)
             {
                 pos.Translate(Vector3.up * moveSpeed * Time.deltaTime);
                 direction = Vector2.up;
             }
-            if (moveDown && canMoveDown)
+            if (moveDown && !canMoveDown)
             {
                 pos.Translate(Vector3.down * moveSpeed * Time.deltaTime);
                 direction = Vector2.down;
@@ -223,22 +225,22 @@ public class Player_Controller : MonoBehaviour
                 if (shootLeft)
                 {
                     direction = Vector2.left;
-                    Instantiate(bulletPrefab, pos.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, bulletSpawner.transform.position, Quaternion.identity);
                 }
                 else if (shootRight)
                 {
                     direction = Vector2.right;
-                    Instantiate(bulletPrefab, pos.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, bulletSpawner.transform.position, Quaternion.identity);
                 }
                 else if (shootUp)
                 {
                     direction = Vector2.up;
-                    Instantiate(bulletPrefab, pos.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, bulletSpawner.transform.position, Quaternion.identity);
                 }
                 else if (shootDown)
                 {
                     direction = Vector2.down;
-                    Instantiate(bulletPrefab, pos.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, bulletSpawner.transform.position, Quaternion.identity);
                 }
             }
         }
