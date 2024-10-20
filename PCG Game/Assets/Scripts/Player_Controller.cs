@@ -14,6 +14,7 @@ public class Player_Controller : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     private Bullet_Controller bulletController;
+    private GameObject bulletSpawner;
 
     [Header("Player Stats")]
     [SerializeField] private float moveSpeed; //how fast player moves
@@ -33,9 +34,27 @@ public class Player_Controller : MonoBehaviour
     private bool isShooting = false;
     private bool startCounting = false;
 
+    private bool facingRight;
+    private Vector3 facingToRight;
+    private Vector3 facingToLeft;
+
+    [Header("Obstacle Detection")]
+    [SerializeField] private float maxDistance;
+    private bool canMoveLeft = true;
+    private bool canMoveRight = true;
+    private bool canMoveUp = true;
+    private bool canMoveDown = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        pos = this.transform;
+        facingToRight = pos.localScale;
+        facingToLeft = new Vector3(facingToRight.x * -1, facingToRight.y, facingToRight.z);
+
+        Transform bulletSpawner = this.gameObject.transform.GetChild(1);
+        pos = bulletSpawner; //Get location of bullet spawner to use when shooting bullets
+
         invulTime = maxInvulTime;
 
         firingTime = attackSpeed + 1; //load one bullet in the chamber
@@ -64,7 +83,7 @@ public class Player_Controller : MonoBehaviour
     {
         invulTime += Time.deltaTime;
 
-        if (attackSpeed >= maxAttackSpeed)
+        if (attackSpeed <= maxAttackSpeed)
         {
             attackSpeed = maxAttackSpeed;
         }
@@ -76,6 +95,8 @@ public class Player_Controller : MonoBehaviour
 
         if (this.gameObject != null)
         {
+            DetectObstacle();
+
             HandleMovement();
 
             HandleShoot();
@@ -86,7 +107,17 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    public void HandleImmune()
+    private void DetectObstacle()
+    {
+        //Check all directions to make sure movement is possible
+        canMoveLeft = Physics2D.Raycast(transform.position, Vector2.left, maxDistance, 0);
+        Debug.Log(canMoveLeft);
+        RaycastHit2D checkRight = Physics2D.Raycast(transform.position, Vector2.right, maxDistance, 0);
+        RaycastHit2D checkUp = Physics2D.Raycast(transform.position, Vector2.up, maxDistance, 0);
+        RaycastHit2D checkDown = Physics2D.Raycast(transform.position, Vector2.down, maxDistance, 0);
+    }
+
+    private void HandleImmune()
     {
         if (invulTime <= maxInvulTime)
         {
@@ -128,30 +159,37 @@ public class Player_Controller : MonoBehaviour
 
         if (isMoving)
         {
-            if (moveLeft)
+            if (moveLeft && canMoveLeft)
             {
                 pos.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 direction = Vector2.left;
+                facingRight = false;
             }
-            if (moveRight)
+            if (moveRight && canMoveRight)
             {
                 pos.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 direction = Vector2.right;
+                facingRight = true;
             }
-            if (moveUp)
+            if (moveUp && canMoveUp)
             {
                 pos.Translate(Vector3.up * moveSpeed * Time.deltaTime);
                 direction = Vector2.up;
             }
-            if (moveDown)
+            if (moveDown && canMoveDown)
             {
                 pos.Translate(Vector3.down * moveSpeed * Time.deltaTime);
                 direction = Vector2.down;
             }
         }
+
+        if (!facingRight)
+        {
+            this.transform.localScale = facingToLeft;
+        }
         else
         {
-            //rb.velocity = Vector3.zero;
+            this.transform.localScale = facingToRight;
         }
     }
 
@@ -186,25 +224,21 @@ public class Player_Controller : MonoBehaviour
                 {
                     direction = Vector2.left;
                     Instantiate(bulletPrefab, pos.position, Quaternion.identity);
-                    bulletController = bulletPrefab.GetComponent<Bullet_Controller>();
                 }
                 else if (shootRight)
                 {
                     direction = Vector2.right;
                     Instantiate(bulletPrefab, pos.position, Quaternion.identity);
-                    bulletController = bulletPrefab.GetComponent<Bullet_Controller>();
                 }
                 else if (shootUp)
                 {
                     direction = Vector2.up;
                     Instantiate(bulletPrefab, pos.position, Quaternion.identity);
-                    bulletController = bulletPrefab.GetComponent<Bullet_Controller>();
                 }
                 else if (shootDown)
                 {
                     direction = Vector2.down;
                     Instantiate(bulletPrefab, pos.position, Quaternion.identity);
-                    bulletController = bulletPrefab.GetComponent<Bullet_Controller>();
                 }
             }
         }
@@ -224,8 +258,17 @@ public class Player_Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && invulTime >= maxInvulTime)
         {
-            health -= collision.gameObject.GetComponent<Homing_Enemy_Controller>().GetDamage();
+            Debug.Log("Ouch!");
+            health -= 1; //collision.gameObject.GetComponent<Homing_Enemy_Controller>().GetDamage() [everything will do 1 damage for now]
             invulTime = 0; //reset invulnerability time when taking damage
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+
         }
     }
 
