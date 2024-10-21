@@ -47,10 +47,10 @@ public class RoomManager : MonoBehaviour
         // Generating map
         Vector2 startPos = new Vector2(Random.Range(0, mapSize), Random.Range(0, mapSize));
         roomCount = 0;
-        GenerateRoom(startPos);
+        GenerateRoom(startPos, new Vector2(-1, -1));
     }
 
-    private void GenerateRoom(Vector2 roomPos){
+    private void GenerateRoom(Vector2 roomPos, Vector2 prevRoomPos){
         GameObject newRoomObj = Object.Instantiate(roomPrefab);
         Room room = newRoomObj.GetComponent<Room>();
 
@@ -68,14 +68,15 @@ public class RoomManager : MonoBehaviour
 
         // Randomizing doors: right, top, left, down
         bool[] doors = {false, false, false, false}; 
+        int initDir = Random.Range(0,4);
         for (int i = 0; i < 4; i++){
-
-            Vector2 newPos = roomPos + offsets[i];
+            int dir = (initDir + i) % 4;
+            Vector2 newPos = roomPos + offsets[dir];
             // if newPos exceeds map boundary, no new room
             if (newPos.x < 0 || newPos.x >= mapSize || newPos.y < 0 || newPos.y >= mapSize) continue;
             // If room already created in position create the door to the room
-            if (map[(int)newPos.y][(int)newPos.x] != null){
-                doors[i] = true;
+            if (newPos == prevRoomPos){
+                doors[dir] = true;
                 continue;
             } 
             // if max room count reached, no more generation
@@ -83,9 +84,9 @@ public class RoomManager : MonoBehaviour
 
             // Create new room in location 
             bool hasRoom = roomSpawnChance > Random.Range(0, 1);
-            doors[i] = hasRoom;
+            doors[dir] = hasRoom;
             if (hasRoom){
-                GenerateRoom(newPos);
+                GenerateRoom(newPos, roomPos);
             }
         }
         room.SetDoor(doors);

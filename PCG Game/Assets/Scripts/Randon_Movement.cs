@@ -18,7 +18,7 @@ public class Randon_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = Random.Range(1, 6); //enemies with random movement have 1 to 5 health
+        // health = Random.Range(1, 6); //enemies with random movement have 1 to 5 health
 
         CreateNewDirection();
     }

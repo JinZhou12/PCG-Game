@@ -56,13 +56,13 @@ public class Turret_Enemy_Controller : Enemy
             Destroy(this.gameObject);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Bullet")
+    //     {
+    //         health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
+    //     }
+    // }
 
     public void DropItem() {
         var _rand = Random.Range(0f,1f);

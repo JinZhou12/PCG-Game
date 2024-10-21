@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1914602677150722695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.73, z: 0}
+  m_LocalPosition: {x: 0, y: 5.38, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minEnemyCount: 3
-  maxEnemyCount: 0
+  maxEnemyCount: 5
   playerSpawnPositions:
   - {fileID: 2825375392868563412}
   - {fileID: 2581779063243230742}
@@ -1510,7 +1510,7 @@ Transform:
   m_GameObject: {fileID: 5578452682703102563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 0.47, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
