@@ -15,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     private Animator animator;
     private Transform pos;
     private SpriteRenderer sr;
+    [SerializeField] private LayerMask collisionLayers;
 
     private Vector2 direction; //direction player is facing
 
@@ -26,6 +27,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private AudioClip Attacking;
     [SerializeField] private AudioClip Hurting;
     private AudioSource audioSource;
+    [SerializeField] private AudioSource itemAudioSource;
 
 
     [Header("Player Stats")]
@@ -36,8 +38,7 @@ public class Player_Controller : MonoBehaviour
 
         moveSpeed = Mathf.Max(maxMoveSpeed, moveSpeed + _changeAmount);
         //Play sound fx
-        audioSource.clip = collecting;
-        audioSource.Play();
+        PlayCollectingSound();
 
     }
 
@@ -47,8 +48,7 @@ public class Player_Controller : MonoBehaviour
     public void ChangeAttackSpeed(float _changeAmount){
         attackSpeed -= _changeAmount;
         //Play sound fx
-        audioSource.clip = collecting;
-        audioSource.Play();
+        PlayCollectingSound();
     }
 
     [SerializeField] private int health;
@@ -58,6 +58,7 @@ public class Player_Controller : MonoBehaviour
     }
 
     public void ChangeHealth(float _changeAmount){
+<<<<<<< Updated upstream
         health += (int)_changeAmount;
         if (health == 1){
             health2.enabled = true;
@@ -65,6 +66,17 @@ public class Player_Controller : MonoBehaviour
         else if (health == 2){
             health3.enabled = true;
         }
+=======
+        health += _changeAmount;
+        //Play sound fx
+        PlayCollectingSound();
+    }
+
+    private void PlayCollectingSound(){
+        itemAudioSource.clip = collecting;
+        itemAudioSource.Play();
+        Debug.Log("DYDYDYDYDYDY");
+>>>>>>> Stashed changes
     }
 
 
@@ -159,11 +171,11 @@ public class Player_Controller : MonoBehaviour
     private void DetectObstacle()
     {
         //Check all directions to make sure movement is possible
-        canMoveLeft = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.left), maxDistance);
+        canMoveLeft = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.left), maxDistance, collisionLayers);
         //Debug.DrawRay(playerCenter.position, transform.TransformDirection(Vector2.left) * maxDistance, Color.red);
-        canMoveRight = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.right), maxDistance);
-        canMoveUp = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.up), maxDistance);
-        canMoveDown = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.down), maxDistance);
+        canMoveRight = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.right), maxDistance, collisionLayers);
+        canMoveUp = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.up), maxDistance, collisionLayers);
+        canMoveDown = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.down), maxDistance, collisionLayers);
         /*IMPORTANT NOTE:
          * Physics2D.Raycast will return true when an object is detected and false when
          * no object is detected.
@@ -259,9 +271,7 @@ public class Player_Controller : MonoBehaviour
             isShooting = true;
             startCounting = true;
             
-            //Play sound fx
-            audioSource.clip = Attacking;
-            audioSource.Play();
+            
         }
         else
         {
@@ -277,6 +287,9 @@ public class Player_Controller : MonoBehaviour
         {
             if (firingTime >= attackSpeed)
             {
+                //Play sound fx
+                audioSource.clip = Attacking;
+                audioSource.Play();
                 firingTime = 0;
                 if (shootLeft)
                 {
@@ -315,19 +328,22 @@ public class Player_Controller : MonoBehaviour
     //Player picking up items
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         Item item = collision.GetComponent<Item>();
         if (item != null)
         {
             item.ApplyEffect(gameObject);
+            PlayCollectingSound();
             //Destroy(collision.gameObject);
         }
+        */
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && invulTime >= maxInvulTime)
         {
-            Debug.Log("Ouch!");
+            //Debug.Log("Ouch!");
             health -= 1; //everything will do 1 damage for now
             if (health == 3)
             {

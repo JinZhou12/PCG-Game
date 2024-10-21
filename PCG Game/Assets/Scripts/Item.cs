@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    public AudioSource audioSource;
     public abstract void ApplyEffect(GameObject player);
 }

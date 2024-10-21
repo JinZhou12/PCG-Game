@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackBoostItem : Item
@@ -16,5 +17,15 @@ public class AttackBoostItem : Item
             //audioSource.SetScheduledEndTime(AudioSettings.dspTime + duration);
         }
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider){
+
+        if (collider.CompareTag("Player")){
+
+            ApplyEffect(collider.gameObject);
+
+        }
+
     }
 }

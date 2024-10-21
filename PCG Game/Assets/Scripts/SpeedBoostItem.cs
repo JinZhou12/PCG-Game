@@ -5,13 +5,6 @@ using UnityEngine;
 public class SpeedBoostItem : Item
 {
     [SerializeField] private float speedIncrease = 2f;
-    [SerializeField] private AudioClip speedBoosting;
-    private AudioSource audioSource;
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public override void ApplyEffect(GameObject player)
     {
@@ -20,11 +13,19 @@ public class SpeedBoostItem : Item
         {
             stats.IncreaseSpeed(speedIncrease);
             Debug.Log("1111");
-            //Play sound fx
-            audioSource.clip = speedBoosting;
-            audioSource.Play();
             //Debug.Log("Increasing speed by: " + speedIncrease + ", current speed: " + speedIncrease);
         }
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collider){
+
+        if (collider.CompareTag("Player")){
+
+            ApplyEffect(collider.gameObject);
+            audioSource.Stop();
+            audioSource.Play();
+
+        }
+
     }
 }

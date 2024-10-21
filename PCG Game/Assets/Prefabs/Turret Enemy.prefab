@@ -100,6 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 2
   health: 3
+  dropItems:
+  - {fileID: 3963602530139174815, guid: a30d029942289d24196f124d67ca9c59, type: 3}
+  - {fileID: 1678954149934839294, guid: bf5fc500aedc1a04ab09f15b5815bb57, type: 3}
+  dropChance: 1
   bullet: {fileID: 2022152050360427435, guid: 97925c443ae6f0148a2a3ac3c9a0fc34, type: 3}
 --- !u!61 &7204761304665440286
 BoxCollider2D:

@@ -65,7 +65,7 @@ public class Homing_Enemy_Controller : Enemy
     }
 
     public void Die() {
-        Debug.Log("Enemy died");
+        //Debug.Log("Enemy died");
         DropItem();
         Destroy(gameObject);
     }

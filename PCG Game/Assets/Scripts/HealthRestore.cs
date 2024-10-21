@@ -18,4 +18,14 @@ public class HealthRestore : Item
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider){
+
+        if (collider.CompareTag("Player")){
+
+            ApplyEffect(collider.gameObject);
+            audioSource.Play();
+        }
+
+    }
 }

@@ -10,6 +10,8 @@ public class Turret_Enemy_Controller : Enemy
     [Header("Enemy Specs")]
     [SerializeField] private float attackSpeed;
     [SerializeField] private float health;
+    public GameObject[] dropItems; 
+    public float dropChance = 0.5f;
 
     private float firingTime;
 
@@ -50,6 +52,7 @@ public class Turret_Enemy_Controller : Enemy
     {
         if (health <= 0)
         {
+            DropItem();
             Destroy(this.gameObject);
         }
     }
@@ -58,6 +61,15 @@ public class Turret_Enemy_Controller : Enemy
         if (collision.gameObject.tag == "Bullet")
         {
             health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
+        }
+    }
+
+    public void DropItem() {
+        var _rand = Random.Range(0f,1f);
+        if ( _rand <= dropChance)
+        {
+            int randomIndex = Random.Range(0, dropItems.Length);
+            Instantiate(dropItems[randomIndex], transform.position, Quaternion.identity);
         }
     }
 }
