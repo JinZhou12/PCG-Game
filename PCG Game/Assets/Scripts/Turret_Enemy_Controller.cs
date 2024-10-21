@@ -7,7 +7,9 @@ public class Turret_Enemy_Controller : MonoBehaviour
 {
     private Vector2 direction;
 
+    [Header("Enemy Specs")]
     [SerializeField] private float attackSpeed;
+    [SerializeField] private float health;
 
     private float firingTime;
 
@@ -27,9 +29,13 @@ public class Turret_Enemy_Controller : MonoBehaviour
     {
         firingTime += Time.deltaTime;
 
-        HandleShoot();
-    }
+        if (gameObject != null)
+        {
+            HandleShoot();
 
+            HandleDeath();
+        }
+    }
     private void HandleShoot()
     {
         direction = (player.transform.position - this.transform.position).normalized;
@@ -38,6 +44,20 @@ public class Turret_Enemy_Controller : MonoBehaviour
         {
             Instantiate(bullet, this.transform.position, Quaternion.identity);
             firingTime = 0;
+        }
+    }
+    private void HandleDeath()
+    {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
         }
     }
 }
