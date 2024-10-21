@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class RoomManager : MonoBehaviour
     // References
     public GameObject roomPrefab;
     public GameObject player;
+    public MinimapCreator minimapCreator;
     
     private void Awake() {
         current = this;
@@ -86,6 +88,8 @@ public class RoomManager : MonoBehaviour
             }
         }
         room.SetDoor(doors);
+
+        minimapCreator.GenerateNewMapTile(roomPos, doors);
     }
 
     public void ToNewRoom(int direction){

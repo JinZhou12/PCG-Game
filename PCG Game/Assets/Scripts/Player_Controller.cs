@@ -19,12 +19,26 @@ public class Player_Controller : MonoBehaviour
 
     [Header("Player Stats")]
     [SerializeField] private float moveSpeed; //how fast player moves
-    private float maxMoveSpeed = 10f; //max speed the player can get to
+    //private float maxMoveSpeed = 10f; //max speed the player can get to
+
+    public void ChangeMoveSpeed(float _changeAmount){
+
+        moveSpeed += _changeAmount;
+
+    }
 
     [SerializeField] private float attackSpeed; //how long before next bullet; shorter is faster
-    private float maxAttackSpeed = .25f; //max attack speed for player
+    //private float maxAttackSpeed = .25f; //max attack speed for player
+
+    public void ChangeAttackSpeed(float _changeAmount){
+        attackSpeed -= _changeAmount;
+    }
 
     [SerializeField] private float health;
+
+    public void ChangeHealth(float _changeAmount){
+        health += _changeAmount;
+    }
 
     [SerializeField] private float invulTime; //how long player has been immune to damage
     private float maxInvulTime = 2f; //how long the player is immune to damage after taking damage
@@ -85,15 +99,18 @@ public class Player_Controller : MonoBehaviour
     {
         invulTime += Time.deltaTime;
 
+
+/*
         if (attackSpeed <= maxAttackSpeed)
         {
             attackSpeed = maxAttackSpeed;
         }
 
-        if (moveSpeed >= maxMoveSpeed)
+        if (moveSpeed != maxMoveSpeed)
         {
             moveSpeed = maxMoveSpeed;
         }
+        */
 
         if (this.gameObject != null)
         {
@@ -259,6 +276,17 @@ public class Player_Controller : MonoBehaviour
     public Vector3 GetPlayerOrientation()
     {
         return pos.position;
+    }
+
+    //Player picking up items
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Item item = collision.GetComponent<Item>();
+        if (item != null)
+        {
+            item.ApplyEffect(gameObject);
+            //Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

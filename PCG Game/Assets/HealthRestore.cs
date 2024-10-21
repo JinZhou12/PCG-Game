@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBoostItem : Item
+public class HealthRestore : Item
 {
-    [SerializeField] private float attackIncrease = 2f;
+    [SerializeField] private float healthRestored = 2f;
 
     public override void ApplyEffect(GameObject player)
     {
         PlayerStats stats = player.GetComponent<PlayerStats>();
         if (stats != null)
         {
-            stats.IncreaseAttack(attackIncrease);
+            stats.HealthRestore(healthRestored);
         }
         Destroy(gameObject);
     }

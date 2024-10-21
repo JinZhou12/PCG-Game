@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedBoostItem : Item
 {
-    public float speedIncrease = 2f;
+    [SerializeField] private float speedIncrease = 2f;
 
     public override void ApplyEffect(GameObject player)
     {
@@ -12,6 +12,7 @@ public class SpeedBoostItem : Item
         if (stats != null)
         {
             stats.IncreaseSpeed(speedIncrease);
+            //Debug.Log("Increasing speed by: " + speedIncrease + ", current speed: " + speedIncrease);
         }
         Destroy(gameObject);
     }
