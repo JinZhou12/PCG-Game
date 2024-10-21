@@ -10,7 +10,7 @@ public class MinimapCreator : MonoBehaviour
     [SerializeField] float tileHeight = 100f; // Height of each tile on the minimap
 
     // Method to generate a new map tile at the given room position and set door states
-    public void GenerateNewMapTile(Vector2 roomPos, bool[] doors)
+    public GameObject GenerateNewMapTile(Vector2 roomPos, bool[] doors)
     {
         // Calculate the tile position based on room position and minimap center
         Vector2 tilePos = minimapCenter.anchoredPosition + new Vector2(roomPos.x * tileWidth, roomPos.y * tileHeight);
@@ -21,16 +21,21 @@ public class MinimapCreator : MonoBehaviour
         newTileRect.anchoredPosition = tilePos;
 
         // Activate door indicators based on the doors array [0,1,2,3] : right, top, left, down
-        Transform[] doorIndicators = newMapTile.GetComponentsInChildren<Transform>(true);
+        GameObject[] doorIndicators = new GameObject[4];
+        doorIndicators[0] = newMapTile.transform.Find("Door Right").gameObject;
+        doorIndicators[1] = newMapTile.transform.Find("Door Top").gameObject;
+        doorIndicators[2] = newMapTile.transform.Find("Door Left").gameObject;
+        doorIndicators[3] = newMapTile.transform.Find("Door Bottom").gameObject;
         
         if (doors.Length == 4 && doorIndicators.Length >= 4)
         {
             for (int i = 0; i < 4; i++)
             {
-                doorIndicators[i].gameObject.SetActive(doors[i]);
+                doorIndicators[i].SetActive(doors[i]);
             }
         }
 
         newMapTile.gameObject.SetActive(true);
+        return newMapTile;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Room : MonoBehaviour
 {
     // Order: right, top, left, down
+    [SerializeField] private int minEnemyCount = 1;
     [SerializeField] private int maxEnemyCount;
     [SerializeField] private Transform[] playerSpawnPositions;
     [SerializeField] private Transform[] enemySpawnPositions;
@@ -18,6 +19,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject[] bossPrefabs;
     private List<Enemy> enemies = new List<Enemy>();
     private GameObject[] doors = new GameObject[4];
+    private MinimapTile minimapTile;
     public Door[] doorTransitions;
 
     private void Awake() {
@@ -60,9 +62,23 @@ public class Room : MonoBehaviour
         RoomManager.current.player.transform.position = playerSpawnPositions[direction].position;
     }
 
+    public void SetMapTile(MinimapTile tile){
+        minimapTile = tile;
+    }
+
+    public void ActivateRoom(){
+        gameObject.SetActive(true);
+        minimapTile.ActivateTile();
+    }
+
+    public void DeactivateRoom(){
+        gameObject.SetActive(false);
+        minimapTile.DeactivateTile();
+    }
+
 
     public void GenerateEnemies(){
-        enemyCount = Random.Range(1, maxEnemyCount);
+        enemyCount = Random.Range(minEnemyCount, maxEnemyCount);
         List<Transform> availablePositions = new List<Transform>(enemySpawnPositions);
 
         for (int i=0; i < enemyCount; i++){

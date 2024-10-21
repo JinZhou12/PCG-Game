@@ -90,7 +90,8 @@ public class RoomManager : MonoBehaviour
         }
         room.SetDoor(doors);
 
-        // minimapCreator.GenerateNewMapTile(roomPos, doors);
+        room.SetMapTile(minimapCreator.GenerateNewMapTile(roomPos, doors).GetComponent<MinimapTile>());
+        if (roomCount == 1) room.ActivateRoom();
     }
 
     public void ToNewRoom(int direction){
@@ -98,11 +99,11 @@ public class RoomManager : MonoBehaviour
         Room nextRoom = map[(int)newRoomPos.y][(int)newRoomPos.x];
 
         // deactivate current room
-        map[(int)currRoomPos.y][(int)currRoomPos.x].gameObject.SetActive(false);
+        map[(int)currRoomPos.y][(int)currRoomPos.x].DeactivateRoom();
         currRoomPos = newRoomPos;
 
         // activate next room and place player in corresponding position
-        nextRoom.gameObject.SetActive(true);
+        nextRoom.ActivateRoom();
         nextRoom.SetPlayerLocation((direction + 2) % 4);
     }
 }

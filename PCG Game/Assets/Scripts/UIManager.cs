@@ -13,6 +13,6 @@ public class UIManager : MonoBehaviour
         int height = Screen.height;
 
         Health.anchoredPosition = new Vector2( -width/2 + 80, height/2 - 100);
-        Minimap.anchoredPosition = new Vector2( width/2 - 200, height/2 - 200);
+        Minimap.anchoredPosition = new Vector2( width/2 - 220, height/2 - 200);
     }
 }

@@ -256,7 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de3ce583977548219111cd117115329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemyCount: 3
+  minEnemyCount: 3
+  maxEnemyCount: 0
   playerSpawnPositions:
   - {fileID: 2825375392868563412}
   - {fileID: 2581779063243230742}
