@@ -24,7 +24,8 @@ public class AttackBoostItem : Item
         if (collider.CompareTag("Player")){
 
             ApplyEffect(collider.gameObject);
-
+            //audioSource.Stop();
+            audioSource.Play();
         }
 
     }

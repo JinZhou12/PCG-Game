@@ -65,6 +65,8 @@ public class Player_Controller : MonoBehaviour
         else if (health == 2){
             health3.enabled = true;
         }
+
+        health +=(int) _changeAmount;
         //Play sound fx
         PlayCollectingSound();
     }

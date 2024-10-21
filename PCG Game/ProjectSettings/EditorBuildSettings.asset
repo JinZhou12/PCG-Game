@@ -12,7 +12,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start Screen.unity
     guid: 15d4781d662c17340b7e17dcd1a002cb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MapTest_test.unity
     guid: 2e6db76e45e554185996c92b3f475842
   m_configObjects: {}

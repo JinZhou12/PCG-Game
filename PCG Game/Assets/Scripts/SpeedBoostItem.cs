@@ -22,9 +22,8 @@ public class SpeedBoostItem : Item
         if (collider.CompareTag("Player")){
 
             ApplyEffect(collider.gameObject);
-            audioSource.Stop();
+            //audioSource.Stop();
             audioSource.Play();
-
         }
 
     }

@@ -17,12 +17,15 @@ public class Homing_Enemy_Controller : Enemy
 
     private GameObject player;
     private Player_Controller playerController;
+    [SerializeField] private AudioClip Hurting;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Abraham");
         playerController = player.GetComponent<Player_Controller>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,6 +64,8 @@ public class Homing_Enemy_Controller : Enemy
         if (collision.gameObject.tag == "Bullet")
         {
             health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
+            audioSource.clip = Hurting;
+            audioSource.Play();
         }
     }
 

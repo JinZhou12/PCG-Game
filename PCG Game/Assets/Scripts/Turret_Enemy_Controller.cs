@@ -18,12 +18,15 @@ public class Turret_Enemy_Controller : Enemy
     private GameObject player;
 
     [SerializeField] private GameObject bullet;
+    [SerializeField] private AudioClip Hurting;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         firingTime = 0;
         player = GameObject.Find("Abraham");
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,14 +59,16 @@ public class Turret_Enemy_Controller : Enemy
             Destroy(this.gameObject);
         }
     }
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.tag == "Bullet")
-    //     {
-    //         health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
-    //     }
-    // }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            health -= collision.gameObject.GetComponent<Bullet_Controller>().GetDamage();
+            audioSource.clip = Hurting;
+            audioSource.Play();
+        }
+    }
     public void DropItem() {
         var _rand = Random.Range(0f,1f);
         if ( _rand <= dropChance)
