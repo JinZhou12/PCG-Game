@@ -117,6 +117,11 @@ public class Player_Controller : MonoBehaviour
         canMoveRight = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.right), maxDistance);
         canMoveUp = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.up), maxDistance);
         canMoveDown = Physics2D.Raycast(playerCenter.position, transform.TransformDirection(Vector2.down), maxDistance);
+        /*IMPORTANT NOTE:
+         * Physics2D.Raycast will return true when an object is detected and false when
+         * no object is detected.
+         * This is why I put !canMoveLeft in the HandleMovement() method
+        */
     }
 
     private void HandleImmune()
