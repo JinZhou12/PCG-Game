@@ -22,6 +22,11 @@ public class Player_Controller : MonoBehaviour
     private Bullet_Controller bulletController;
     private GameObject bulletSpawner;
     private Transform playerCenter;
+    [SerializeField] private AudioClip collecting;
+    [SerializeField] private AudioClip Attacking;
+    [SerializeField] private AudioClip Hurting;
+    private AudioSource audioSource;
+
 
     [Header("Player Stats")]
     [SerializeField] private float moveSpeed; //how fast player moves
@@ -30,6 +35,9 @@ public class Player_Controller : MonoBehaviour
     public void ChangeMoveSpeed(float _changeAmount){
 
         moveSpeed += _changeAmount;
+        //Play sound fx
+        audioSource.clip = collecting;
+        audioSource.Play();
 
     }
 
@@ -38,6 +46,9 @@ public class Player_Controller : MonoBehaviour
 
     public void ChangeAttackSpeed(float _changeAmount){
         attackSpeed -= _changeAmount;
+        //Play sound fx
+        audioSource.clip = collecting;
+        audioSource.Play();
     }
 
     [SerializeField] private float health;
@@ -80,6 +91,8 @@ public class Player_Controller : MonoBehaviour
         invulTime = maxInvulTime;
 
         firingTime = attackSpeed + 1; //load one bullet in the chamber
+
+        audioSource = GetComponent<AudioSource>();
 
         if (GetComponent<SpriteRenderer>() != null )
         {
@@ -234,6 +247,10 @@ public class Player_Controller : MonoBehaviour
         {
             isShooting = true;
             startCounting = true;
+            
+            //Play sound fx
+            audioSource.clip = Attacking;
+            audioSource.Play();
         }
         else
         {
@@ -314,6 +331,10 @@ public class Player_Controller : MonoBehaviour
                 health1.enabled = false;
             }
             invulTime = 0; //reset invulnerability time when taking damage
+
+            //Play sound fx
+            audioSource.clip = Hurting;
+            audioSource.Play();
         }
     }
 

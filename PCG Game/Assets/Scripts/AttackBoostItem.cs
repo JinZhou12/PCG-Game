@@ -12,6 +12,8 @@ public class AttackBoostItem : Item
         if (stats != null)
         {
             stats.IncreaseAttack(attackIncrease);
+            Debug.Log("1111");
+            //audioSource.SetScheduledEndTime(AudioSettings.dspTime + duration);
         }
         Destroy(gameObject);
     }

@@ -12,15 +12,15 @@ public class PlayerStats : MonoBehaviour
     Player_Controller controller;
 
     private void Start(){
-
         controller = GetComponent<Player_Controller>();
-
+        
     }
 
     //Increase attack
     public void IncreaseAttack(float amount)
     {
         controller.ChangeAttackSpeed(amount);
+        
     }
 
     //Increasing speed
