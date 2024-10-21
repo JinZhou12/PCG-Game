@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Start Screen")
             {
-                SceneManager.LoadScene("MapTest");
+                SceneManager.LoadScene("MapTest_test");
             }
             else
             {

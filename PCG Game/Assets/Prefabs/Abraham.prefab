@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2022152050360427435, guid: 74070a9b9d73b6d4f8a1e6851cf70d61, type: 3}
   moveSpeed: 6
-  attackSpeed: 1.5
+  attackSpeed: 1
   health: 3
   invulTime: 0
   maxDistance: 0.5

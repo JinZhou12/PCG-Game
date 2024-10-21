@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnDestroy() {
-        room.RemoveEnemy(this);
+        if (gameObject != null)
+        {
+            room.RemoveEnemy(this);
+        }
     }
 }
