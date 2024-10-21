@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Homing_Enemy_Controller : MonoBehaviour
+public class Homing_Enemy_Controller : Enemy
 {
     //Class for Homing enemies
 

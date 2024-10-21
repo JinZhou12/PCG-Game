@@ -3,7 +3,7 @@ using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Turret_Enemy_Controller : MonoBehaviour
+public class Turret_Enemy_Controller : Enemy
 {
     private Vector2 direction;
 

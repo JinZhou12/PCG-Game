@@ -12,10 +12,11 @@ public class RoomManager : MonoBehaviour
     [System.NonSerialized] public int Top = 1;
     [System.NonSerialized] public int Left = 2;
     [System.NonSerialized] public int Bottom = 3;
-    // Map settings
+    [Header("Map Settings")]
     [SerializeField] private int mapSize = 5;
     [SerializeField] private int maxRoom = 8;
     [SerializeField] private float roomSpawnChance = 0.5f;
+    
     // private Parameters
     private Vector2[] offsets = {new Vector2(1, 0), new Vector2(0, 1), new Vector2(-1, 0), new Vector2(0, -1)}; // right, top, left, down
     private Vector2 currRoomPos;
@@ -89,7 +90,7 @@ public class RoomManager : MonoBehaviour
         }
         room.SetDoor(doors);
 
-        minimapCreator.GenerateNewMapTile(roomPos, doors);
+        // minimapCreator.GenerateNewMapTile(roomPos, doors);
     }
 
     public void ToNewRoom(int direction){
