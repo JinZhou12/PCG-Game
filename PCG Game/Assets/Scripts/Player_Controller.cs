@@ -30,11 +30,11 @@ public class Player_Controller : MonoBehaviour
 
     [Header("Player Stats")]
     [SerializeField] private float moveSpeed; //how fast player moves
-    //private float maxMoveSpeed = 10f; //max speed the player can get to
+    private float maxMoveSpeed = 10f; //max speed the player can get to
 
     public void ChangeMoveSpeed(float _changeAmount){
 
-        moveSpeed += _changeAmount;
+        moveSpeed = Mathf.Max(maxMoveSpeed, moveSpeed + _changeAmount);
         //Play sound fx
         audioSource.clip = collecting;
         audioSource.Play();
@@ -51,11 +51,22 @@ public class Player_Controller : MonoBehaviour
         audioSource.Play();
     }
 
-    [SerializeField] private float health;
+    [SerializeField] private int health;
+
+    public int GetHealth(){
+        return health;
+    }
 
     public void ChangeHealth(float _changeAmount){
-        health += _changeAmount;
+        health += (int)_changeAmount;
+        if (health == 1){
+            health2.enabled = true;
+        }
+        else if (health == 2){
+            health3.enabled = true;
+        }
     }
+
 
     [SerializeField] private float invulTime; //how long player has been immune to damage
     private float maxInvulTime = 2f; //how long the player is immune to damage after taking damage

@@ -8,11 +8,14 @@ public class HealthRestore : Item
 
     public override void ApplyEffect(GameObject player)
     {
-        PlayerStats stats = player.GetComponent<PlayerStats>();
-        if (stats != null)
-        {
-            stats.HealthRestore(healthRestored);
+        Player_Controller stats = player.GetComponent<Player_Controller>();
+        // Do nothing is health is full
+        if (stats.GetHealth() < 3){
+            if (stats != null)
+            {
+                stats.ChangeHealth(healthRestored);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
