@@ -58,7 +58,6 @@ public class Player_Controller : MonoBehaviour
     }
 
     public void ChangeHealth(float _changeAmount){
-<<<<<<< Updated upstream
         health += (int)_changeAmount;
         if (health == 1){
             health2.enabled = true;
@@ -66,8 +65,6 @@ public class Player_Controller : MonoBehaviour
         else if (health == 2){
             health3.enabled = true;
         }
-=======
-        health += _changeAmount;
         //Play sound fx
         PlayCollectingSound();
     }
@@ -76,7 +73,6 @@ public class Player_Controller : MonoBehaviour
         itemAudioSource.clip = collecting;
         itemAudioSource.Play();
         Debug.Log("DYDYDYDYDYDY");
->>>>>>> Stashed changes
     }
 
 

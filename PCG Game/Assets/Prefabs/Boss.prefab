@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1701492809760767058, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
+      propertyPath: dropItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2723694260019008641, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: m_Name
       value: Boss
