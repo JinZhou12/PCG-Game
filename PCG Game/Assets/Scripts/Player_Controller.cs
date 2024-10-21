@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Controller : MonoBehaviour
 {
+    [Header("Health Mangaer")]
+    [SerializeField] private Image health1;
+    [SerializeField] private Image health2;
+    [SerializeField] private Image health3;
+
     private Rigidbody2D rb;
     private Animator animator;
     private Transform pos;
@@ -294,7 +300,19 @@ public class Player_Controller : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && invulTime >= maxInvulTime)
         {
             Debug.Log("Ouch!");
-            health -= 1; //collision.gameObject.GetComponent<Homing_Enemy_Controller>().GetDamage() [everything will do 1 damage for now]
+            health -= 1; //everything will do 1 damage for now
+            if (health == 3)
+            {
+                health3.enabled = false;
+            }
+            else if (health == 2)
+            {
+                health2.enabled = false;
+            }
+            else if (health == 1)
+            {
+                health1.enabled = false;
+            }
             invulTime = 0; //reset invulnerability time when taking damage
         }
     }
