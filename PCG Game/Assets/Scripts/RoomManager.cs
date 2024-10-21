@@ -56,9 +56,14 @@ public class RoomManager : MonoBehaviour
 
         // Generate everything in room, First room don't need enemies, and deactivate all but first room
         if (roomCount != 0){
-            room.GenerateEnemies();
+            if (roomCount == maxRoom - 1){
+                room.GenerateBoss();
+                room.SetLastRoom();
+            } 
+            else room.GenerateEnemies();
             newRoomObj.SetActive(false);
-        } else{
+        } else {
+            room.SetFirstRoom();
             player.transform.position = new Vector3(0, 0, 0); 
             currRoomPos = roomPos;
         }
@@ -74,11 +79,15 @@ public class RoomManager : MonoBehaviour
             Vector2 newPos = roomPos + offsets[dir];
             // if newPos exceeds map boundary, no new room
             if (newPos.x < 0 || newPos.x >= mapSize || newPos.y < 0 || newPos.y >= mapSize) continue;
-            // If room already created in position create the door to the room
+            // Connect to previous room
             if (newPos == prevRoomPos){
                 doors[dir] = true;
                 continue;
             } 
+            // If already a room skip
+            if (map[(int)newPos.y][(int)newPos.x] != null){
+                continue;
+            }
             // if max room count reached, no more generation
             if (roomCount >= maxRoom) continue;
 
@@ -92,7 +101,6 @@ public class RoomManager : MonoBehaviour
         room.SetDoor(doors);
 
         room.SetMapTile(minimapCreator.GenerateNewMapTile(roomPos, doors).GetComponent<MinimapTile>());
-        if (roomCount == 1) room.ActivateRoom();
     }
 
     public void ToNewRoom(int direction){

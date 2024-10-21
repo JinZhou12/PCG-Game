@@ -13,11 +13,13 @@ public class Room : MonoBehaviour
     [SerializeField] private Transform[] enemySpawnPositions;
     private bool[] doorStatus = new bool[4];
     private int enemyCount;
+    private bool lastRoom = false;
+    private bool firstRoom = false;
 
     // References
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private GameObject[] bossPrefabs;
-    private List<Enemy> enemies = new List<Enemy>();
+    [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private List<Enemy> enemies = new List<Enemy>();
     private GameObject[] doors = new GameObject[4];
     private MinimapTile minimapTile;
     public Door[] doorTransitions;
@@ -27,6 +29,7 @@ public class Room : MonoBehaviour
         doors[1] = transform.Find("CoverTop").gameObject;
         doors[2] = transform.Find("CoverLeft").gameObject;
         doors[3] = transform.Find("CoverBottom").gameObject;
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("Enemy");
         if (maxEnemyCount == 0) maxEnemyCount = enemySpawnPositions.Length;
     }
 
@@ -42,7 +45,8 @@ public class Room : MonoBehaviour
 
     private void Update() {
         if (enemies.Count == 0){
-            OpenDoors();
+            if (lastRoom) OpenExit();
+            else OpenDoors();
         }
         if (SceneManager.GetActiveScene().name == "Start Screen"){
             doors[1].gameObject.SetActive(false);
@@ -58,12 +62,27 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void OpenExit(){
+        // Open top door to end
+        doors[1].SetActive(false);
+        doorTransitions[1].GetComponent<Door>().SetEnd();
+    }
+
     public void SetPlayerLocation(int direction){
         RoomManager.current.player.transform.position = playerSpawnPositions[direction].position;
     }
 
     public void SetMapTile(MinimapTile tile){
         minimapTile = tile;
+        if (firstRoom) ActivateRoom();
+    }
+
+    public void SetLastRoom(){
+        lastRoom = true;
+    }
+
+    public void SetFirstRoom(){
+        firstRoom = true;
     }
 
     public void ActivateRoom(){
@@ -90,6 +109,13 @@ public class Room : MonoBehaviour
             enemies.Add(newEnemy.GetComponent<Enemy>());
             availablePositions.RemoveAt(enemyPos);
         }
+    }
+
+    public void GenerateBoss(){
+        GameObject boss = Object.Instantiate(bossPrefab, new Vector3(0,0,0), Quaternion.identity, transform);
+        boss.GetComponent<Enemy>().SetRoom(gameObject.GetComponent<Room>());
+
+        enemies.Add(boss.GetComponent<Enemy>());
     }
 
     public void RemoveEnemy(Enemy enemy){

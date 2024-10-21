@@ -15,6 +15,7 @@ public class HealthRestore : Item
             {
                 stats.ChangeHealth(healthRestored);
             }
+            audioSource.Play();
             Destroy(gameObject);
         }
     }
@@ -22,9 +23,7 @@ public class HealthRestore : Item
     private void OnTriggerEnter2D(Collider2D collider){
 
         if (collider.CompareTag("Player")){
-
             ApplyEffect(collider.gameObject);
-            audioSource.Play();
         }
 
     }

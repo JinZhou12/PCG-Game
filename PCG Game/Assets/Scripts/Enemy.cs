@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private Room room;
+    [SerializeField] private Room room;
 
     public void SetRoom(Room currRoom){
         room = currRoom;

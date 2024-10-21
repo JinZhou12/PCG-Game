@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7465034636918653821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (2)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1481527849916389961}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (6)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2581779063243230742}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSpawn (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653445142353185966}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSpawn (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5489691565195207287}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (3)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2825375392868563412}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -256,8 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de3ce583977548219111cd117115329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minEnemyCount: 3
-  maxEnemyCount: 5
+  minEnemyCount: 2
+  maxEnemyCount: 6
   playerSpawnPositions:
   - {fileID: 2825375392868563412}
   - {fileID: 2581779063243230742}
@@ -276,7 +276,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5652915546594843101, guid: b213afaad77f64147a375fb19b4cb6d6, type: 3}
   - {fileID: 2723694260019008641, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
-  bossPrefabs: []
+  bossPrefab: {fileID: 3714375986239732790, guid: 4a588a98817294bf09e564d85acd931c, type: 3}
+  enemies: []
   doorTransitions:
   - {fileID: 1911192484741500717}
   - {fileID: 3052441658187976010}
@@ -291,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3214224700136440893}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (7)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -586,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6545776447841636341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -617,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7921773635233525335}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSpawns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +659,7 @@ GameObject:
   - component: {fileID: 1854797555138804306}
   m_Layer: 0
   m_Name: CoverRight
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1494,7 +1495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 154773788533309273}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (4)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1525,7 +1526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2880134903820660674}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (1)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1820,7 +1821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8170558985897454105}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (5)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2121,7 +2122,7 @@ GameObject:
   - component: {fileID: 5546714909897104782}
   m_Layer: 0
   m_Name: CoverLeft
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2450,7 +2451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5463802882103196718}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawn (8)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2745,7 +2746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6119955125987213068}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerSpawn (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -2782,7 +2783,7 @@ GameObject:
   - component: {fileID: 3750951881201861838}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3969,7 +3970,7 @@ GameObject:
   - component: {fileID: 3702211731905267814}
   m_Layer: 0
   m_Name: CoverBottom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4304,7 +4305,7 @@ GameObject:
   - component: {fileID: 2434773039657427154}
   m_Layer: 0
   m_Name: CoverTop
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4617,7 +4618,7 @@ GameObject:
   - component: {fileID: 1767054251628125985}
   - component: {fileID: 8333401288524161272}
   - component: {fileID: 3458682046825736284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14613,7 +14614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4377180398338723253}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySpawns
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,6 +12,7 @@ TagManager:
   - DoorTop
   - DoorRight
   - Start
+  - Wall
   layers:
   - Default
   - TransparentFX

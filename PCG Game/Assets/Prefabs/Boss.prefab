@@ -10,23 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4627560190632207302, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: health
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4627560190632207302, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4627560190632207302, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
+      propertyPath: maxDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4627560190632207302, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: newDirectionInterval
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 681761656859821478, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.768353
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 681761656859821478, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.768353
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 681761656859821478, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: m_LocalScale.z
@@ -73,8 +77,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1701492809760767058, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
+      propertyPath: dropChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701492809760767058, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
+      propertyPath: attackSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701492809760767058, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: dropItems.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565424457477238557, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2723694260019008641, guid: 947c036bc8b490749ab185a0e7a96e0b, type: 3}
       propertyPath: m_Name

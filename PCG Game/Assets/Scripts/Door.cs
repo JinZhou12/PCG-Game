@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    private bool endGame = false;
+
+    public void SetEnd(){
+        endGame = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             if (SceneManager.GetActiveScene().name == "Start Screen")
             {
-                SceneManager.LoadScene("MapTest_test");
+                SceneManager.LoadScene("MapTest");
+            }
+            else if (endGame){
+                SceneManager.LoadScene("Start Screen");
             }
             else
             {
